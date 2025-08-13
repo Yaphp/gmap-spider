@@ -11,7 +11,7 @@ def get_location_by_coordinates(latitude, longitude):
 
     try:
         # 反向地理编码：经纬度 -> 地址
-        location = geolocator.reverse((latitude, longitude), language='en')
+        location = geolocator.reverse((latitude, longitude), timeout=10, language='en')
 
         if location:
             address = location.raw['address']

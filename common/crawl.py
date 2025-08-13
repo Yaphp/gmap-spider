@@ -151,15 +151,9 @@ def get_map_detail(session, items):
                 address_dict = get_location_by_coordinates(coords[0], coords[1])
                 item["country"] = address_dict["country"]
                 item["city"] = address_dict["city"]
-
-            except IndexError:
-                # 如果无法提取坐标，使用时间戳作为文件名
-                print("无法提取坐标信息")
-                name = str(int(time.time()))
-                item["lat"] = 0
-                item["lng"] = 0
-                item["country"] = ""
-                item["city"] = ""
+            except Exception as e:
+                print(f"无法提取坐标信息: {e}")
+                continue
 
             print(f"基础信息采集:{item}")
 
